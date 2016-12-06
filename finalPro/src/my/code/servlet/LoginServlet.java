@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			if(check.isRight(name, password))
 			{
-				if(name.equals("admin")){;
+				if(name.equals("admin")){
 					req.setAttribute("admin", "true");
 				}
 				HttpSession session = req.getSession();
