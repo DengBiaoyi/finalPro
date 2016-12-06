@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,9 @@ public class LeaveServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		req.setCharacterEncoding("UTF-8");
+		req.setAttribute("TAG","leave" );
 		getData(req, resp);
 		Date date = new Date(Integer.parseInt(year)-1900,
 				Integer.parseInt(month)-1,Integer.parseInt(day));
@@ -40,7 +43,10 @@ public class LeaveServlet extends HttpServlet{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		print();
+		
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/skip");
+		requestDispatcher.forward(req, resp);
+		//print();
 	}
 	private void getData(HttpServletRequest req, HttpServletResponse resp){
 		name = req.getParameter("name");

@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			if(check.isRight(name, password))
 			{
-				System.out.println("登录成功");
+				if(name.equals("admin"));
 				HttpSession session = req.getSession();
 				session.setAttribute("name", name);
 				System.out.println(session.getId()+" "+session.isNew());

@@ -27,6 +27,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function showDialog(){
 	if(confirm("确认退出么？")){window.location.href="http://localhost:8080/finalPro/logout"; };
 	}
+	function check(form){
+		if(form.newPassword.value.length<6){
+	     	alert("密码长度不得少于6位!");
+	     	form.password.focus();
+	    	 return false;
+     	}
+		if(form.newPassword.value.length>15){
+	     	alert("密码长度不得超过15位!");
+	     	form.password.focus();
+	    	 return false;
+     	}
+     	if(form.checkPwd.value==""){
+	     alert("请确认密码!");
+	     form.checkPwd.focus();
+	     return false;
+	     }
+	     if(form.checkPwd.value.length<6){
+		     alert("确认密码不得少于6位!");
+		     form.checkPwd.focus();
+		     return false;
+	     } 
+	     if(form.checkPwd.value.length<6){
+		     alert("确认密码不得超过15位!");
+		     form.checkPwd.focus();
+		     return false;
+	     } 
+	     if(form.checkPwd.value!=form.password.value){
+		     alert("两次密码需保持一致!");
+		     form.checkPwd.focus();
+		     return false;
+	     } 
+	}
 </script>
 </head>
 <body>
@@ -60,10 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<label name="label1"> 姓 名：<input readonly="readonly" value="<%=user.getName() %>" class="type1" type="text" name="name"/></label><br/>
 			<label name="label2"> 部 门：<input readonly="readonly" value="<%=user.getDepartment() %>" class="type1" type="text" name="department"/></label><br/>
 			<label name="label3"> 职 位：<input readonly="readonly" value="<%=user.getJob() %>" class="type1" type="text" name="job"/></label><br/>
-			<label name="label3">请输入旧密码：<input class="type1" type="text" name="job" readonly="readonly" /></label><br/>
-			<label name="label3">请输入新密码：<input class="type1" type="text" name="job" readonly="readonly" /></label><br/>
-			<label name="label3">&nbsp&nbsp&nbsp请确认密码：<input class="type1" type="text" name="job" readonly="readonly" /></label><br/>
-			<input id="btn" type="submit" value="提交申请" name="submit"/>
+			<label name="label3">请输入旧密码：<input class="type1" type="password" name="password"  /></label><br/>
+			<label name="label3">请输入新密码：<input class="type1" type="password" name="newPassword" /></label><br/>
+			<label name="label3">&nbsp&nbsp&nbsp请确认密码：<input class="type1" type="password" name="checkPwd" /></label><br/>
+			<input id="btn" type="submit" value="提交申请" name="submit" onclick="return check(this.form)"/>
 		</form>		
 	</div>
 	<div id="footer" class="auto">

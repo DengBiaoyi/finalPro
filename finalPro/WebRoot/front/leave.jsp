@@ -27,6 +27,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function showDialog(){
 	if(confirm("确认退出么？")){window.location.href="http://localhost:8080/finalPro/logout"; };
 	}
+	function check(form){
+		if(form.leaveDays.value==""){
+			alert("请输入请假天数!");
+		    form.leaveDays.focus();
+	     	return false;
+		}
+	}
 	function selectDay(){
 		var myselect=document.getElementById("year");
 		var index=myselect.selectedIndex ;
@@ -170,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option  value="31" id="day31">31</option>
 				</select> 日
 			</label><br/>
-			<label>请假天数(天)：<input class="type1" type="text" name="leaveDays"/></label><br/>
+			<label>请假天数(天)：<input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="type1" type="text" name="leaveDays"/></label><br/>
 			<label>请假类型：<br/>
 				<label><input type="radio" name="type" value="年休假"/> 年休假</label>
 				<label><input type="radio" name="type" value="病 假"/> 病 假</label>
@@ -186,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<label>请假原因：<br/>
 				<textarea id="label4" name="reason" cols="50" rows="4"></textarea>
 			</label>
-			<input id="btn" type="submit" value="提交申请" name="submit"/>
+			<input id="btn" type="submit" value="提交申请" name="submit" onclick="return check(this.form)"/>
 		</form>		
 	</div>
 	<div id="footer" class="auto">

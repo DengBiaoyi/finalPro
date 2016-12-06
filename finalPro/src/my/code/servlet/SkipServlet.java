@@ -20,7 +20,37 @@ public class SkipServlet extends HttpServlet {
 			register(req, resp);
 		}else if(tag.equals("logout")){
 			logout(req, resp);
+		}else if(tag.equals("leave")){
+			leave(req, resp);
+		}else if(tag.equals("changePwd")){
+			changePwd(req, resp);
 		}
+	}
+	private void changePwd(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException{
+		Boolean bl = (Boolean)req.getAttribute("isTrue");
+		
+		if(bl.equals(true)){
+			req.setAttribute("target", "/finalPro/front/login.html");
+			req.setAttribute("pic", "ok");
+			req.setAttribute("info", "修改密码成功，请重新登录");
+			getServletContext().getRequestDispatcher("/front/skip.jsp").forward(req, resp);
+		
+		}else{
+			req.setAttribute("target", "/finalPro/front/changePwd.jsp");
+			req.setAttribute("pic", "error");
+			req.setAttribute("info", "密码输入错误，请重新输入!");
+			getServletContext().getRequestDispatcher("/front/skip.jsp").forward(req, resp);
+		}
+	}
+	private void leave(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException{
+		req.setAttribute("target", "/finalPro/front/leave.jsp");
+		req.setAttribute("pic", "ok");
+		req.setAttribute("info", "提交申请成功，请等待审核!");
+		getServletContext().getRequestDispatcher("/front/skip.jsp").forward(req, resp);
+	
+		
 	}
 	private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		req.setAttribute("target", "/finalPro/front/login.html");

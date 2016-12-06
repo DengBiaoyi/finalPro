@@ -48,4 +48,13 @@
   	<servlet-name>leave</servlet-name>
   	<url-pattern>/leave</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+      <servlet-name>changePwd</servlet-name>
+      <servlet-class>my.code.servlet.ChangePwdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>changePwd</servlet-name>
+  	<url-pattern>/changePwd</url-pattern>
+  </servlet-mapping>
 </web-app>

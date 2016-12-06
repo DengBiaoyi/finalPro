@@ -9,7 +9,7 @@ String info =(String)request.getAttribute("info");
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
-		<meta http-equiv="refresh" content="3;URL=<%=target %>" />
+		<meta http-equiv="refresh" content="1;URL=<%=target %>" />
 		<title>正在跳转...</title>
 		<link rel="stylesheet" type="text/css" href="<%=path %>/style/remind.css" />
 	</head>

@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="my.code.implDao.FindRecordImpl"%>
+<%@page import="my.code.implDao.MysqlImpl"%>
 <%@page import="my.code.implDao.GetUserInfoImpl"%>
 <%@page import="my.code.object.UserInfo"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
@@ -11,7 +14,7 @@ if(name.equals("")){
 GetUserInfoImpl info = new GetUserInfoImpl();
 UserInfo user = info.getUserInfo(name);
 if(user==null){
-	response.sendRedirect(request.getContextPath()+"/front/login.html");
+	user=new UserInfo("","","");
 }
 int temp;
 String a = request.getParameter("index");
@@ -19,7 +22,17 @@ if(a==null||a.length()<0){
 temp=1;}else{
 temp = Integer.parseInt(a);
 }
-int pageCount = 10;
+MysqlImpl mysql = MysqlImpl.getInstance();
+mysql.connect();
+FindRecordImpl find = new FindRecordImpl();
+ResultSet resultSet=find.findMyRecord(mysql, name);
+resultSet.last();
+int pageNum = 6;
+int recordCount = resultSet.getRow();
+int pageCount = recordCount/pageNum;
+if(recordCount%pageNum!=0) pageCount++;
+resultSet = find.findMyRecordStartX(mysql, name, (temp-1)*pageNum, pageNum);
+
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -36,6 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/public.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/record.css" />
 </head>
@@ -58,6 +72,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	<div style="margin-top:55px;"></div>
+	<div id = "menu" class="auto" >
+		<ul>
+			<li><a id="headA-1" href="front/record.jsp">请假记录</a></li>
+			<li><a id="headA-2" href="front/leave.jsp">我要请假</a></li>
+			<li><a id="headA-3" href="front/changePwd.jsp">密码修改</a></li>
+		</ul>
+	</div>
 	<div id="record" class="auto">
 		<div id="pager">
 			<a href="http://localhost:8080/finalPro/front/record.jsp?index=1">首页</a>
@@ -94,30 +115,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 			</thead>
 			<tbody>
+			<%
+			int i=(temp-1)*pageNum;
+			while(resultSet.next()){ %>
 				<tr>
-					<td>1</td>
-					<td>小小</td>
-					<td>开发部</td>
-					<td>程序员</td>
-					<td>2016-12-1</td>
-					<td>10</td>
-					<td>病假</td>
-					<td>撒的发货粗晚饭后怒我欺负湖时代科技覅我</td>
-					<td>未审核</td>
-					<td>啊说的就是早点回家的价值发生</td>
+					<td><%=++i %></td>
+					<td><%=resultSet.getString(2) %></td>
+					<td><%=resultSet.getString(3) %></td>
+					<td><%=resultSet.getString(4) %></td>
+					<td><%=resultSet.getString(5) %></td>
+					<td><%=resultSet.getString(6) %></td>
+					<td><%=resultSet.getString(7) %></td>
+					<td><%=resultSet.getString(8) %></td>
+					<td><%=resultSet.getString(9) %></td>
+					<td><%=resultSet.getString(10) %></td>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>小小</td>
-					<td>开发部</td>
-					<td>程序员</td>
-					<td>2016-12-1</td>
-					<td>10</td>
-					<td>病假</td>
-					<td>撒的发货粗晚饭后怒我欺负湖时代科技覅我</td>
-					<td>未审核</td>
-					<td>无</td>
-				</tr>
+			<%} %>
 			</tbody>
 		</table>
 	</div>

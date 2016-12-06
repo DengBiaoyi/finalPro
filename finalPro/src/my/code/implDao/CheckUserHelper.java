@@ -30,6 +30,7 @@ public class CheckUserHelper implements CheckUser{
 			
 		}else {
 			mysql.close();
+			System.out.println("密码错误");
 			return false;
 		}
 	}

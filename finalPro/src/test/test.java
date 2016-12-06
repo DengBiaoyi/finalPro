@@ -4,9 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import my.code.dao.ChangePwd;
 import my.code.dao.GetUserInfo;
 import my.code.dao.Mysql;
+import my.code.implDao.ChangePwdImpl;
 import my.code.implDao.CheckUserHelper;
+import my.code.implDao.FindRecordImpl;
 import my.code.implDao.GetUserInfoImpl;
 import my.code.implDao.LeaveImpl;
 import my.code.implDao.MysqlImpl;
@@ -47,11 +50,28 @@ public class test {
 //		Date date = new Date(2016-1900,1-1,1);
 //		
 //		leave.addLeave(user, date, 10, "病假", "嘿嘿");
-		String string=null;
-		if(string!=null&(string="11")=="11"){
-			
+//		String string=null;
+//		if(string!=null&(string="11")=="11"){
+//			
+//		}
+//		System.out.println(string);	
+//		ChangePwdImpl change = new ChangePwdImpl();
+//		String password = "123456";
+//		String newPassword = MD5.getMD5("123456");
+//		System.out.println(change.changePwd("小华", password, newPassword));
+		MysqlImpl mysql = MysqlImpl.getInstance();
+		mysql.connect();
+		FindRecordImpl find = new FindRecordImpl();
+		ResultSet resultSet = find.findMyRecord(mysql, "小小");
+//		resultSet = find.findMyRecordStartX(mysql, "小小", 5, 2);
+//		System.out.println(resultSet.getFetchSize());
+		while(resultSet.next()){
+			for(int i=1;i<11;i++){
+				System.out.print(resultSet.getString(i)+" ");
+			}
+			System.out.println();
 		}
-		System.out.println(string);	
-		
+//		System.out.println(resultSet.last());
+//		System.out.println(resultSet.getRow());
 	}
 }

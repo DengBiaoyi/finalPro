@@ -61,6 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/public.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/register.css" />
 </head>
