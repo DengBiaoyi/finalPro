@@ -9,7 +9,7 @@ String name ="";
 name = (String)session.getAttribute("name");
 if(name==null)name="";
 if(name.equals("")){
-	response.sendRedirect(request.getContextPath()+"/front/login.html");
+	response.sendRedirect(request.getContextPath()+"/admin/admin.jsp");
 }
 GetUserInfoImpl info = new GetUserInfoImpl();
 UserInfo user = info.getUserInfo(name);
@@ -31,7 +31,6 @@ int pageNum = 6;
 int recordCount = resultSet.getRow();
 int pageCount = recordCount/pageNum;
 if(recordCount%pageNum!=0) pageCount++;
-if(pageCount==0) pageCount=1;
 resultSet = find.findMyRecordStartX(mysql, name, (temp-1)*pageNum, pageNum);
 
 String path = request.getContextPath();
@@ -44,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 function jump(){
 	 	var myselect=document.getElementById("select");
 	 	
-	 	window.location.href="http://localhost:8080/finalPro/front/record.jsp?index="+(myselect.selectedIndex+1);
+	 	window.location.href="http://localhost:8080/finalPro/admin/admin.jsp?index="+(myselect.selectedIndex+1);
 	 }
 </script>
 <!DOCTYPE html>
@@ -75,9 +74,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div style="margin-top:55px;"></div>
 	<div id = "menu" class="auto" >
 		<ul>
-			<li><a id="headA-1" href="front/record.jsp">请假记录</a></li>
-			<li><a id="headA-2" href="front/leave.jsp">我要请假</a></li>
-			<li><a id="headA-3" href="front/changePwd.jsp">密码修改</a></li>
+			<li><a id="headA-1" href="front/record.jsp">全部记录</a></li>
+			<li><a id="headA-2" href="front/leave.jsp">未审核</a></li>
+			<li><a id="headA-3" href="front/changePwd.jsp">已审核</a></li>
 		</ul>
 	</div>
 	<div id="record" class="auto">
@@ -95,12 +94,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<%}
 			}
 			%></select> 页  共  <%=pageCount %>   页
-			<%if(temp!=pageCount&&pageCount!=0){ %>
+			<%if(temp!=pageCount){ %>
 			<a href="http://localhost:8080/finalPro/front/record.jsp?index=<%=temp+1 %>">下一页</a>
 			<%} %>
 			<a href="http://localhost:8080/finalPro/front/record.jsp?index=<%=pageCount %>">末页</a>
 		</div>
-		<table border="0" style="table-layout:fixed" cellspacing="20">
+		<table border="0" style="table-layout:fixed" cellspacing="10">
 			<thead>
 				<tr>
 					<td width="50px">编号</td>
@@ -113,9 +112,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td width="150px">请假原因</td>
 					<td width="80px">审核状况</td>
 					<td width="150px">驳回原因</td>
+					<td width="80px" >操作</td>
 				</tr>
 			</thead>
 			<tbody>
+				<tr>
+					<td>1</td>
+					<td>小小</td>
+					<td>开发部</td>
+					<td>程序员</td>
+					<td>2016-1-1</td>
+					<td>10</td>
+					<td>病假</td>
+					<td>按时打发打发</td>
+					<td>未审批</td>
+					<td></td>
+					<td>
+						<input type="button" value="通过"/>
+						<input type="button" value="驳回"/>
+					</td>			
+				</tr>
 			<%
 			int i=(temp-1)*pageNum;
 			while(resultSet.next()){ %>
@@ -130,6 +146,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><%=resultSet.getString(8) %></td>
 					<td><%=resultSet.getString(9) %></td>
 					<td><%=resultSet.getString(10) %></td>
+					<td>
+						<input type="button" value="通过"/>
+						<input type="button" value="驳回"/>
+					</td>			
 				</tr>
 			<%} %>
 			</tbody>

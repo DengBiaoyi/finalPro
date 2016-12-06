@@ -71,6 +71,7 @@ public class test {
 			}
 			System.out.println();
 		}
+		System.out.println(MD5.getMD5("admin"));
 //		System.out.println(resultSet.last());
 //		System.out.println(resultSet.getRow());
 	}

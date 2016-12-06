@@ -78,12 +78,17 @@ public class SkipServlet extends HttpServlet {
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String string = (String) req.getAttribute("msg");
 		if(string.equals("loginSuccess")){
-			//resp.sendRedirect("/finalPro/front/leave.jsp");
-			req.setAttribute("target", "/finalPro/front/leave.jsp");
-			req.setAttribute("pic", "ok");
-			req.setAttribute("info", "登录成功");
+			String isAdmin = (String)req.getAttribute("admin");
+			if(isAdmin!=null){
+				req.setAttribute("target", "/finalPro/admin/admin.jsp");
+				req.setAttribute("pic", "ok");
+				req.setAttribute("info", "登录成功");
+			}else{
+				req.setAttribute("target", "/finalPro/front/record.jsp");
+				req.setAttribute("pic", "ok");
+				req.setAttribute("info", "登录成功");
+			}
 		}else{
-			//resp.sendRedirect("/finalPro/front/login.html");
 			req.setAttribute("pic", "error");
 			req.setAttribute("info", "登录失败");
 			req.setAttribute("target", "/finalPro/front/login.html");
