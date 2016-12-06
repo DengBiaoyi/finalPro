@@ -1,0 +1,67 @@
+#login {
+	background:#fff;
+	height:500px
+}
+#login h2 {
+	border-bottom: 1px solid #ededed;
+    color: #666;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 15px;
+}
+#login form {
+	color:#333;
+	height:500px
+	}
+#login form div{
+	margin-top: 50px;
+}	
+#login form div label {
+	display:block;
+	font-size: 14px;
+    line-height: 25px;
+    float:right;
+    margin:40px 380px 0 0;
+}
+#login form div label input {
+	width:230px;
+	height:18px;
+	background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow:2px 2px 2px #f0f0f0 inset;
+    color: #333;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 18px;
+    margin: 0;
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.btn {
+	border-radius: 2px;
+    font-size: 18px;
+    line-height: normal;
+    background:url(core_bg.png) 0 0 #f3f3f3;
+    border: 1px solid #b1aeae;
+    border-radius: 2px;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: normal;
+    margin: 0;
+    overflow: visible;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+#login .btn {
+	width: 100px;
+	margin: 30px 0 0 410px;
+
+}

@@ -1,0 +1,59 @@
+
+#menu{
+	height:50px;
+	background:#ECECEC;
+}
+#menu li{
+	float:left;
+	margin: 0 10px 0 0;
+}
+#menu ul li a{
+	color:black;
+	display:block;
+	font-size:16px;
+	font-weight:bold;
+	height:27px;
+	margin:10px 0 0 10px;
+	line-height:27px;
+	text-align:center;
+	width: 103px;
+	text-decoration:none;
+}
+#headA-1{
+	background:rgba(0,0,0,0) url(d_hover.png) no-repeat;
+}
+#menu ul li a:hover{
+	background:rgba(0,0,0,0) url(d_hover.png) no-repeat;
+	
+}
+#record{
+	background:#fff;
+	height:600px;
+}
+#record  h2{
+	border-bottom: 1px solid #ededed;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 10px 15px;
+	color: #666;
+}
+#record table{
+	 text-align:center;
+	 font-size: 15px;
+}
+#pager{
+	font-size: 15px;
+	
+	text-align:center;
+}
+#pager a{
+	color:#7000E1;
+}
+
+
+
+
+
+
+
+
