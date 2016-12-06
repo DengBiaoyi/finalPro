@@ -23,6 +23,19 @@ temp=1;}else{
 temp = Integer.parseInt(a);
 }
 MysqlImpl mysql = MysqlImpl.getInstance();
+String searchName = (String)request.getParameter("searchName");
+String searchDepartment = (String)request.getParameter("searchDepartment");
+boolean isName = false;
+boolean isDepartment = false;
+if(searchName!=null&&searchName.length()<=0){isName=true;}
+if(searchDepartment!=null&&searchDepartment.length()<=0){isDepartment=true;}
+if(isName||isDepartment){
+	if(isName&&isDepartment){
+	}else if(isName){
+	}else{
+	}
+}else{
+}
 mysql.connect();
 FindRecordImpl find = new FindRecordImpl();
 ResultSet resultSet=find.findMyRecord(mysql, name);
@@ -51,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/public.css" />
-<link rel="stylesheet" type="text/css" href="<%=path %>/style/record.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/style/allRecord.css" />
 </head>
 <body>
 	<div class="header_wrap">
@@ -79,7 +92,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a id="headA-3" href="front/changePwd.jsp">已审核</a></li>
 		</ul>
 	</div>
-	<div id="record" class="auto">
+	<div id="search" class="auto">
+		<form method="post" action="/allRecord">
+			<label>用户名：<input type="text" id="searchName"/></label>
+			<label>部门：<input type="text" id="searchDepartment"/></label>
+			<input type="submit" value="搜索" id="searchButton" onClick="" />
+			
+		</form>
+	</div>
+	<div id="allRecord" class="auto">
 		<div id="pager">
 			<a href="http://localhost:8080/finalPro/front/record.jsp?index=1">首页</a>
 			<%if(temp!=1){ %>
@@ -106,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td width="50px">姓名</td>
 					<td width="50px">部门</td>
 					<td width="50px">职位</td>
-					<td width="50px">请假时间</td>
+					<td width="80px">请假时间</td>
 					<td width="80px">请假天数</td>
 					<td width="80px">请假类型</td>
 					<td width="150px">请假原因</td>

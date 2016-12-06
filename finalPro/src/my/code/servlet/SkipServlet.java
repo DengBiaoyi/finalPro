@@ -80,7 +80,7 @@ public class SkipServlet extends HttpServlet {
 		if(string.equals("loginSuccess")){
 			String isAdmin = (String)req.getAttribute("admin");
 			if(isAdmin!=null){
-				req.setAttribute("target", "/finalPro/admin/admin.jsp");
+				req.setAttribute("target", "/finalPro/admin/allRecord.jsp");
 				req.setAttribute("pic", "ok");
 				req.setAttribute("info", "登录成功");
 			}else{

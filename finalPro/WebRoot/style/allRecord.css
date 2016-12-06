@@ -1,0 +1,74 @@
+
+#menu{
+	height:50px;
+	background:#ECECEC;
+}
+#menu li{
+	float:left;
+	margin: 0 10px 0 0;
+}
+#menu ul li a{
+	color:black;
+	display:block;
+	font-size:16px;
+	font-weight:bold;
+	height:27px;
+	margin:10px 0 0 10px;
+	line-height:27px;
+	text-align:center;
+	width: 103px;
+	text-decoration:none;
+}
+#headA-1{
+	background:rgba(0,0,0,0) url(d_hover.png) no-repeat;
+}
+#menu ul li a:hover{
+	background:rgba(0,0,0,0) url(d_hover.png) no-repeat;
+	
+}
+#allRecord{
+	background:#fff;
+	height:600px;
+}
+#allRecord  h2{
+	border-bottom: 1px solid #ededed;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 10px 15px;
+	color: #666;
+}
+#allRecord table{
+	 text-align:center;
+	 font-size: 15px;
+}
+#pager{
+	font-size: 15px;
+	padding:20px 0 0 0;
+	text-align:center;
+}
+#pager a{
+	color:#7000E1;
+}
+#search form{
+	font-size:14px;
+	margin: 10px 0 0 0;
+	height:30px;
+}
+#search form label{
+	margin: 20px 0 0 40px;
+}
+#search form label input{
+	height:25px;
+	text-align:center;
+}
+#search form #searchButton{
+	margin:0 0 0 30px;
+}
+
+
+
+
+
+
+
+
