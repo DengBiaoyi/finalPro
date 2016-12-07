@@ -49,12 +49,21 @@
   	<url-pattern>/leave</url-pattern>
   </servlet-mapping>
   
-    <servlet>
+  <servlet>
       <servlet-name>changePwd</servlet-name>
       <servlet-class>my.code.servlet.ChangePwdServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>changePwd</servlet-name>
   	<url-pattern>/changePwd</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>isPass</servlet-name>
+      <servlet-class>my.code.servlet.IsPassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>isPass</servlet-name>
+  	<url-pattern>/isPass</url-pattern>
   </servlet-mapping>
 </web-app>

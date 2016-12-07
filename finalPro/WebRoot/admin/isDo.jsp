@@ -90,6 +90,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       tmpInput.value = value; 
       sfForm.appendChild(tmpInput); 
      }
+     function pass(index){
+     	var sfForm = document.getElementById("hidenForm");
+     	createInput(sfForm,"text","id",index); 
+     	createInput(sfForm,"text","isPass","pass"); 
+      	sfForm.method = "post"; 
+	    sfForm.action = "isPass"; 
+	    sfForm.submit(); 
+     }
+     function depass(index){
+     	var sfForm = document.getElementById("hidenForm");
+     	var reReason=prompt("请输入驳回原因","");
+     	if(reReason==null) return false;
+     	
+     	createInput(sfForm,"text","reReason",reReason); 
+     	createInput(sfForm,"text","id",index); 
+     	createInput(sfForm,"text","isPass","depass"); 
+      	sfForm.method = "post"; 
+	    sfForm.action = "isPass"; 
+	    sfForm.submit(); 
+	    return true;
+     }
 </script>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -187,11 +208,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><%=resultSet.getString(9) %></td>
 					<td><%=resultSet.getString(10) %></td>
 					<td>
-						<input type="button"  value="通过"/>
-						<input type="button" value="驳回"/>
+						<input type="button"  value="通过" id="pass" onclick="pass(<%=resultSet.getString(1) %>)"/>
+						<input type="button" value="驳回" id="depass" onclick="return depass(<%=resultSet.getString(1) %>)"/>
 					</td>			
 				</tr>
-			<%} %>
+			<%}%>
 			</tbody>
 		</table>
 	</div>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import my.code.dao.ChangePwd;
 import my.code.dao.GetUserInfo;
 import my.code.dao.Mysql;
+import my.code.dao.Update;
 import my.code.implDao.ChangePwdImpl;
 import my.code.implDao.CheckUserHelper;
 import my.code.implDao.FindRecordImpl;
@@ -14,6 +15,7 @@ import my.code.implDao.GetUserInfoImpl;
 import my.code.implDao.LeaveImpl;
 import my.code.implDao.MysqlImpl;
 import my.code.implDao.RegisterUserImpl;
+import my.code.implDao.UpdateImpl;
 import my.code.object.User;
 import my.code.object.UserInfo;
 import my.code.utils.MD5;
@@ -65,14 +67,16 @@ public class test {
 		ResultSet resultSet = find.findMyRecord(mysql, "小小");
 //		resultSet = find.findMyRecordStartX(mysql, "小小", 5, 2);
 //		System.out.println(resultSet.getFetchSize());
-		while(resultSet.next()){
-			for(int i=1;i<11;i++){
-				System.out.print(resultSet.getString(i)+" ");
-			}
-			System.out.println();
-		}
-		System.out.println(MD5.getMD5("admin"));
+//		while(resultSet.next()){
+//			for(int i=1;i<11;i++){
+//				System.out.print(resultSet.getString(i)+" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println(MD5.getMD5("admin"));
 //		System.out.println(resultSet.last());
 //		System.out.println(resultSet.getRow());
+		UpdateImpl update = new UpdateImpl();
+		update.depass(String.valueOf(22),"1231231321");
 	}
 }
