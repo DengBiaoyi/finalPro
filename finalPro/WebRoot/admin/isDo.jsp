@@ -1,3 +1,4 @@
+<%@page import="my.code.implDao.FindRecordIsDo"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="my.code.implDao.FindRecordImpl"%>
 <%@page import="my.code.implDao.MysqlImpl"%>
@@ -31,7 +32,7 @@ boolean isDepartment = false;
 if(searchName!=null&&searchName.length()>0){isName=true;}
 if(searchDepartment!=null&&searchDepartment.length()>0){isDepartment=true;}
 mysql.connect();
-FindRecordImpl find = new FindRecordImpl();
+FindRecordIsDo find = new FindRecordIsDo();
 ResultSet resultSet;
 if(isName||isDepartment){
 	if(isName&&isDepartment){
@@ -46,6 +47,7 @@ if(isName||isDepartment){
 }
 resultSet.last();
 int pageNum = 6;
+
 int recordCount = resultSet.getRow();
 int pageCount = recordCount/pageNum;
 if(recordCount%pageNum!=0) pageCount++;
@@ -77,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 function jumpOnForm(index){
 	 	var sfForm = document.getElementById("hidenForm"); 
       	sfForm.method = "post"; 
-	    sfForm.action = "admin/allRecord.jsp?index="+index; 
+	    sfForm.action = "admin/isDo.jsp?index="+index; 
 	    sfForm.submit(); 
 	 }
      function createInput(sfForm,type,name,value) 
@@ -94,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/public.css" />
-<link rel="stylesheet" type="text/css" href="<%=path %>/style/allRecord.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/style/isDo.css" />
 </head>
 <body>
 	<div class="header_wrap">
@@ -152,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<%} %>
 			<a onclick="jumpOnForm(<%=pageCount %>)">末页</a>
 		</div>
-		<table border="0" style="table-layout:fixed" cellspacing="15">
+		<table border="0" style="table-layout:fixed" cellspacing="10">
 			<thead>
 				<tr height = "31px">
 					<td width="50px">编号</td>
@@ -165,13 +167,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td width="150px">请假原因</td>
 					<td width="80px">审核状况</td>
 					<td width="150px">驳回原因</td>
+					<td width="80px" >操作</td>
 				</tr>
 			</thead>
 			<tbody>
+				
 			<%
 			int i=(temp-1)*pageNum;
 			while(resultSet.next()){ %>
-				<tr height = "45px">
+				<tr >
 					<td><%=++i %></td>
 					<td><%=resultSet.getString(2) %></td>
 					<td><%=resultSet.getString(3) %></td>
@@ -181,7 +185,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><%=resultSet.getString(7) %></td>
 					<td><%=resultSet.getString(8) %></td>
 					<td><%=resultSet.getString(9) %></td>
-					<td><%=resultSet.getString(10) %></td>			
+					<td><%=resultSet.getString(10) %></td>
+					<td>
+						<input type="button"  value="通过"/>
+						<input type="button" value="驳回"/>
+					</td>			
 				</tr>
 			<%} %>
 			</tbody>

@@ -19,4 +19,7 @@ public interface FindRecord {
 	
 	public ResultSet findRecordByNameAndDepartment(MysqlImpl mysql,String name,String department)throws SQLException;
 	public ResultSet findRecordByNameAndDepartmentStartX(MysqlImpl mysql,String name,String department,int x,int n)throws SQLException;
+
+	ResultSet findAll(MysqlImpl mysql)throws SQLException ;
+	public ResultSet findAllStartX(MysqlImpl mysql,int x,int n)throws SQLException ;
 }

@@ -1,3 +1,4 @@
+<%@page import="my.code.implDao.FindRecordHasDo"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="my.code.implDao.FindRecordImpl"%>
 <%@page import="my.code.implDao.MysqlImpl"%>
@@ -31,7 +32,7 @@ boolean isDepartment = false;
 if(searchName!=null&&searchName.length()>0){isName=true;}
 if(searchDepartment!=null&&searchDepartment.length()>0){isDepartment=true;}
 mysql.connect();
-FindRecordImpl find = new FindRecordImpl();
+FindRecordHasDo find = new FindRecordHasDo();
 ResultSet resultSet;
 if(isName||isDepartment){
 	if(isName&&isDepartment){
@@ -71,13 +72,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	 function jump(){
 	 	var myselect=document.getElementById("select");
-	 	
 	 	jumpOnForm(myselect.selectedIndex+1);
 	 }
 	 function jumpOnForm(index){
 	 	var sfForm = document.getElementById("hidenForm"); 
       	sfForm.method = "post"; 
-	    sfForm.action = "admin/allRecord.jsp?index="+index; 
+	    sfForm.action = "admin/hasDo.jsp?index="+index; 
 	    sfForm.submit(); 
 	 }
      function createInput(sfForm,type,name,value) 
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css" href="<%=path %>/style/public.css" />
-<link rel="stylesheet" type="text/css" href="<%=path %>/style/allRecord.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/style/hasDo.css" />
 </head>
 <body>
 	<div class="header_wrap">
@@ -171,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<%
 			int i=(temp-1)*pageNum;
 			while(resultSet.next()){ %>
-				<tr height = "45px">
+				<tr height = "45px" >
 					<td><%=++i %></td>
 					<td><%=resultSet.getString(2) %></td>
 					<td><%=resultSet.getString(3) %></td>
